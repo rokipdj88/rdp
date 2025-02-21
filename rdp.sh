@@ -92,5 +92,5 @@ docker compose up -d
 PUBLIC_IP=$(curl -s ifconfig.me || curl -s icanhazip.com)
 
 echo -e "${GREEN}Docker Compose started successfully!${NC}"
-echo -e "${CYAN}Check your RDP Installation on the website: http://$PUBLIC_IP:8009${NC}"
+echo -e "${CYAN}Check your RDP Installation on the website: http://$PUBLIC_IP:8006${NC}"
 echo -e "${YELLOW}Created by Majikayo t.me/candraapn - VPS/RDP Store: https://t.me/candrapn${NC}"

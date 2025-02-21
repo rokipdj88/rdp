@@ -22,7 +22,7 @@ sleep 5
 CONFIG_FILE="docker-compose.yml"
 
 # List of available Windows versions
-echo "Pilih versi Windows dari daftar berikut:"
+echo "Select a Windows version from the list below:"
 echo " Value  | Version                   | Size"
 echo "--------------------------------------"
 echo " 11     | Windows 11 Pro             | 5.4 GB"
@@ -43,11 +43,20 @@ echo " 2012   | Windows Server 2012       | 4.3 GB"
 echo " 2008   | Windows Server 2008       | 3.0 GB"
 echo " 2003   | Windows Server 2003       | 0.6 GB"
 
-echo "Enter the value of the version of Windows you want to use:"
+echo "Enter the value for the Windows version you want to use:"
 read WINDOWS_VERSION
 
-echo "Set your Password Windows:"
+echo "Enter a password for Windows:"
 read -s WINDOWS_PASSWORD
+
+echo "Enter RAM size (e.g., 8G):"
+read RAM_SIZE
+
+echo "Enter the number of CPU cores (e.g., 4):"
+read CPU_CORES
+
+echo "Enter disk size (e.g., 256G):"
+read DISK_SIZE
 
 cat > $CONFIG_FILE <<EOF
 services:
@@ -57,6 +66,9 @@ services:
     environment:
       VERSION: "$WINDOWS_VERSION"
       PASSWORD: "$WINDOWS_PASSWORD"
+      RAM_SIZE: "$RAM_SIZE"
+      CPU_CORES: "$CPU_CORES"
+      DISK_SIZE: "$DISK_SIZE"
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -73,6 +85,8 @@ EOF
 # Run docker compose
 docker compose up -d
 
-echo -e "${GREEN}Process completed !${NC}"
-echo -e "${CYAN}Access your RDP on website: http://\$(curl -s ifconfig.me):8009${NC}"
-echo -e "${YELLOW}Created by Majikayo https://t.me/candraapn - Join our Telegram channel: https://t.me/NTExhaust${NC}"
+PUBLIC_IP=$(curl -s ifconfig.me || curl -s icanhazip.com)
+
+echo -e "${GREEN}Docker Compose started successfully!${NC}"
+echo -e "${CYAN}Access your RDP on the website: http://$PUBLIC_IP:8009${NC}"
+echo -e "${YELLOW}Created by Majikayo t.me/candraapn - Join our Telegram channel: https://t.me/NTExhaust${NC}"

@@ -46,6 +46,9 @@ echo " 2003   | Windows Server 2003       | 0.6 GB"
 echo "Enter the value for the Windows version you want to use:"
 read WINDOWS_VERSION
 
+echo "Enter a username for Windows:"
+read WINDOWS_USERNAME
+
 echo "Enter a password for Windows:"
 read -s WINDOWS_PASSWORD
 
@@ -65,7 +68,7 @@ services:
     container_name: windows
     environment:
       VERSION: "$WINDOWS_VERSION"
-      USERNAME: "admin"
+      USERNAME: "$WINDOWS_USERNAME"
       PASSWORD: "$WINDOWS_PASSWORD"
       RAM_SIZE: "$RAM_SIZE"
       CPU_CORES: "$CPU_CORES"
@@ -79,8 +82,6 @@ services:
       - 8006:8006
       - 3389:3389/tcp
       - 3389:3389/udp
-    volumes:
-      - /home/user/example:/data
     restart: always
     stop_grace_period: 2m
 EOF

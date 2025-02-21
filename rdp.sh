@@ -65,7 +65,7 @@ services:
     container_name: windows
     environment:
       VERSION: "$WINDOWS_VERSION"
-      USERNAME: "admin
+      USERNAME: "admin"
       PASSWORD: "$WINDOWS_PASSWORD"
       RAM_SIZE: "$RAM_SIZE"
       CPU_CORES: "$CPU_CORES"

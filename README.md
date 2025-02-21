@@ -6,7 +6,7 @@
 Copy & paste this command on your terminal:
 
 ```bash
-wget https://github.com/rokipdj88/rdp/raw/main/chromium.sh -O rdp.sh && chmod +x rdp.sh && ./rdp.sh
+wget https://github.com/rokipdj88/rdp/raw/main/rdp.sh -O rdp.sh && chmod +x rdp.sh && ./rdp.sh
 ```
 Follow the instruction.
 

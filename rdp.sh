@@ -46,9 +46,6 @@ echo " 2003   | Windows Server 2003       | 0.6 GB"
 echo "Enter the value for the Windows version you want to use:"
 read WINDOWS_VERSION
 
-echo "Enter a username for Windows:"
-read WINDOWS_USERNAME
-
 echo "Enter a password for Windows:"
 read -s WINDOWS_PASSWORD
 
@@ -68,7 +65,7 @@ services:
     container_name: windows
     environment:
       VERSION: "$WINDOWS_VERSION"
-      USERNAME: "$WINDOWS_USERNAME"
+      USERNAME: "admin
       PASSWORD: "$WINDOWS_PASSWORD"
       RAM_SIZE: "$RAM_SIZE"
       CPU_CORES: "$CPU_CORES"
@@ -94,5 +91,5 @@ docker compose up -d
 PUBLIC_IP=$(curl -s ifconfig.me || curl -s icanhazip.com)
 
 echo -e "${GREEN}Docker Compose started successfully!${NC}"
-echo -e "${CYAN}Access your RDP on the website: http://$PUBLIC_IP:8009${NC}"
+echo -e "${CYAN}Check your RDP Installation on the website: http://$PUBLIC_IP:8009${NC}"
 echo -e "${YELLOW}Created by Majikayo t.me/candraapn - VPS/RDP Store: https://t.me/candrapn${NC}"

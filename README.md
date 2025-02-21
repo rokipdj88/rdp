@@ -10,7 +10,7 @@ wget https://github.com/rokipdj88/rdp/raw/main/rdp.sh -O rdp.sh && chmod +x rdp.
 ```
 Follow the instruction.
 
-# ⚠️ Port 8006
+# ⚠️ Port 8006,3389
 
 
 

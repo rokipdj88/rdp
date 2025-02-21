@@ -10,27 +10,15 @@ wget https://github.com/rokipdj88/rdp/raw/main/chromium.sh -O rdp.sh && chmod +x
 ```
 Follow the instruction.
 
-# ⚠️
-
-Port 8006
+# ⚠️ Port 8006
 
 
-# 📝 DOCUMENT GUIDE
+
+
+ 📝 DOCUMENT GUIDE
 
 Buy VPS at : [https://t.me/candrapn](https://t.me/candrapn)
 
-
-
-## 🎨 Understanding the Colors
-
-The tool uses a variety of colors to make the output easy to read:
-
-- 🟢 Green: Successful operations
-- 🔵 Blue: General information
-- 🟡 Yellow: Warnings or important notices
-- 🔴 Red: Errors or failed operations
-- 🟣 Magenta: Highlighted information
-- 🟠 Cyan: Balance information
 
 
 ## 🤝 Contributing

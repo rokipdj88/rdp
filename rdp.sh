@@ -19,6 +19,33 @@ echo -e '\e[0m'
 echo -e "Join our Telegram channel: https://t.me/NTExhaust"
 sleep 5
 
+# Install Docker (latest)
+echo -e "${CYAN}Installing Docker...${NC}"
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+# Enable and start Docker
+sudo systemctl enable docker
+sudo systemctl start docker
+
+echo -e "${GREEN}Docker installed and started!${NC}"
+
+# Check Docker Compose plugin
+echo -e "${CYAN}Checking Docker Compose...${NC}"
+if ! docker compose version &> /dev/null
+then
+    echo -e "${YELLOW}Docker Compose not found. Installing...${NC}"
+    sudo apt-get install -y docker-compose-plugin
+else
+    echo -e "${GREEN}Docker Compose is already installed.${NC}"
+fi
+
 CONFIG_FILE="docker-compose.yml"
 
 # List of available Windows versions
@@ -35,13 +62,13 @@ echo " 8e     | Windows 8.1 Enterprise     | 3.7 GB"
 echo " 7e     | Windows 7 Enterprise       | 3.0 GB"
 echo " ve     | Windows Vista Enterprise   | 3.0 GB"
 echo " xp     | Windows XP Professional    | 0.6 GB"
-echo " 2025   | Windows Server 2025       | 5.0 GB"
-echo " 2022   | Windows Server 2022       | 4.7 GB"
-echo " 2019   | Windows Server 2019       | 5.3 GB"
-echo " 2016   | Windows Server 2016       | 6.5 GB"
-echo " 2012   | Windows Server 2012       | 4.3 GB"
-echo " 2008   | Windows Server 2008       | 3.0 GB"
-echo " 2003   | Windows Server 2003       | 0.6 GB"
+echo " 2025   | Windows Server 2025        | 5.0 GB"
+echo " 2022   | Windows Server 2022        | 4.7 GB"
+echo " 2019   | Windows Server 2019        | 5.3 GB"
+echo " 2016   | Windows Server 2016        | 6.5 GB"
+echo " 2012   | Windows Server 2012        | 4.3 GB"
+echo " 2008   | Windows Server 2008        | 3.0 GB"
+echo " 2003   | Windows Server 2003        | 0.6 GB"
 
 echo "Enter the value for the Windows version you want to use:"
 read WINDOWS_VERSION
@@ -86,11 +113,12 @@ services:
     stop_grace_period: 2m
 EOF
 
-# Run docker compose
+# Start Docker Compose
 docker compose up -d
 
 PUBLIC_IP=$(curl -s ifconfig.me || curl -s icanhazip.com)
 
 echo -e "${GREEN}Docker Compose started successfully!${NC}"
-echo -e "${CYAN}Check your RDP Installation on the website: http://$PUBLIC_IP:8006${NC}"
-echo -e "${YELLOW}Created by Majikayo t.me/candraapn - VPS/RDP Store: https://t.me/candrapn${NC}"
+echo -e "${CYAN}Check your Windows Installation on the website: http://$PUBLIC_IP:8006${NC}"
+echo -e "${CYAN}Connect your RDP when installation is completed."
+echo -e "${YELLOW}Majikayo t.me/candraapn - VPS/RDP Store: https://t.me/candrapn${NC}"
